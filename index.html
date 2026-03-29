@@ -450,6 +450,52 @@
             .lightbox-content-wrapper { max-width: 95%; }
         }
 
+        /* --- 新增：置頂按鈕樣式 --- */
+        .back-to-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary-gold);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            opacity: 0; /* 預設隱藏 */
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top-btn.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top-btn:hover {
+            background-color: #d67118;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 600px) {
+            .back-to-top-btn {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -706,6 +752,10 @@ Hi , my name is Lily. 是一位深耕於 <span class="highlight-gold">視覺傳�
     </main>
 </div>
 
+<button id="back-to-top" class="back-to-top-btn" title="回到頂部">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
 <div id="lightbox" class="lightbox">
     <span class="lightbox-close">&times;</span>
     <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
@@ -718,6 +768,7 @@ Hi , my name is Lily. 是一位深耕於 <span class="highlight-gold">視覺傳�
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        // --- Lightbox 燈箱邏輯 ---
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCaption = document.getElementById('lightbox-caption');
@@ -784,6 +835,26 @@ Hi , my name is Lily. 是一位深耕於 <span class="highlight-gold">視覺傳�
                 if (e.key === 'ArrowRight') nextImage();
                 if (e.key === 'ArrowLeft') prevImage();
             }
+        });
+
+        // --- 新增：置頂按鈕邏輯 ---
+        const backToTopBtn = document.getElementById('back-to-top');
+
+        // 監聽滾動事件，當往下捲動超過 300px 時顯示按鈕
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        // 點擊按鈕時，平滑滾動回頁面頂部
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     });
 </script>
