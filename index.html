@@ -22,7 +22,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Noto Sans TC', sans-serif;
+            font-family: "Poppins", Arial, sans-serif ;
             background-color: var(--bg-color);
             color: var(--main-text);
             line-height: 1.6;
@@ -69,7 +69,7 @@
             color: white;
             padding: 4px 12px;
             border-radius: 20px;
-            font-size: 13px;
+            font-size: 16px;
             font-weight: 700;
             margin-bottom: 20px;
             letter-spacing: 1px;
@@ -95,7 +95,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 15px;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 300;
         }
         .contact-item i {
@@ -115,7 +115,7 @@
             text-align: left;
         }
 
-        .education-item { margin-bottom: 46px; font-size: 14px; text-align: left;}
+        .education-item { margin-bottom: 46px; font-size: 15px; text-align: left;}
         .education-item h4 { font-weight: 500; margin-bottom: 5px; color: #fff;}
         .education-item p { font-weight: 300;  color: var(--white); }
 
@@ -137,7 +137,7 @@
 
         .cert-item {
             text-align: left;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 300;
             display: flex;
             align-items: flex-start;
@@ -168,7 +168,7 @@
         }
 
         .summary {
-            font-size: 15px;
+            font-size: 16px;
             color: var(--main-text);
             margin-bottom: 40px;
             text-align: justify;
@@ -234,9 +234,9 @@
             margin-top: 2px;
         }
         .award-details h4 { font-size: 16px; font-weight: 700; color: var(--primary-blue); margin-bottom: 3px;}
-        .award-details p { font-size: 14px; color: var(--light-text); }
+        .award-details p { font-size: 15px; color: var(--light-text); }
 
-        /* 工作經歷區塊 (簡化版) */
+        /* 工作經歷區塊 */
         .experience-timeline { position: relative; margin-bottom: 50px; }
         .experience-timeline::before {
             content: '';
@@ -255,8 +255,7 @@
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: 0;
-            top: 5px;
+            left: -3px;
             width: 16px;
             height: 16px;
             background: var(--white);
@@ -265,8 +264,8 @@
         }
         .timeline-date { font-size: 13px; color: var(--secondary-gold); font-weight: 700; margin-bottom: 4px; }
         .timeline-title { font-size: 18px; font-weight: 700; margin-bottom: 2px; }
-        .timeline-company { font-size: 14px; font-weight: 500; color: var(--light-text); }
-       .timeline-desc {font-size: 15px; color: var(--main-text);}
+        .timeline-company { font-size: 15px; font-weight: 500; color: var(--light-text); }
+       .timeline-desc {font-size: 15px; color: var(--main-text); margin-top: 5px;}
 
         /* 近期作品集 */
         .portfolio-section { margin-top: 40px; }
@@ -275,22 +274,22 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             overflow: hidden;
-            margin-bottom: 40px; /* 增加間距 */
+            margin-bottom: 40px; 
         }
         .project-details { padding: 25px; }
         .project-details h3 { font-size: 20px; font-weight: 700; margin-bottom: 8px; color: var(--primary-blue); }
-        .project-roles { font-size: 13px; color: var(--secondary-gold); font-weight: 500; margin-bottom: 12px; }
-        .project-desc { font-size: 14px; color: var(--main-text); }
+        .project-roles { font-size: 16px; color: var(--secondary-gold); font-weight: 500; margin-bottom: 12px; }
+        .project-desc { font-size: 15px; color: var(--main-text); }
 
-        /* 新增：精選作品集 Grid 樣式 */
+        /* 精選作品集 Grid 樣式 */
         .portfolio-grid-section {
             margin-top: 50px;
         }
 
         .portfolio-grid-container {
             display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 二列 */
-            gap: 20px; /* 間距 */
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 20px; 
         }
 
         .portfolio-grid-item {
@@ -299,35 +298,158 @@
             border: 1px solid var(--border-color);
             background: #efefef;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .portfolio-grid-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer; 
+            position: relative;
         }
 
         .portfolio-grid-item img {
             width: 100%;
-            height: 200px; /* 固定高度保持一致 */
-            object-fit: cover; /* 圖片填充 */
+            height: 200px; 
+            object-fit: cover; 
             display: block;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .portfolio-grid-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15); 
+        }
+
+        .portfolio-grid-item:hover img {
+            transform: scale(1.05); 
         }
 
         .portfolio-grid-item p {
             padding: 8px;
-            font-size: 14px;
+            font-size: 15px;
             text-align: center;
             color: var(--main-text);
             font-weight: 500;
+            background: #efefef; 
+            position: relative;
+            z-index: 2; 
+            margin: 0;
         }
 
-        /* 響應式 */
+        /* 響應式：平板 (小於 900px) */
         @media (max-width: 900px) {
             .resume-container { grid-template-columns: 1fr; margin: 0; border-radius: 0; }
             .sidebar { padding: 40px 20px; }
             .main-content { padding: 30px 20px; }
-            .portfolio-grid-container { grid-template-columns: repeat(2, 1fr); } /* 手機端改為兩列 */
+            
+            .portfolio-grid-container { 
+                grid-template-columns: 1fr; 
+                gap: 25px; 
+            }
+
+            .portfolio-grid-item img {
+                height: auto; 
+                max-height: 500px; 
+                object-fit: contain; 
+                background-color: #ffffff; 
+            }
+
+            .portfolio-grid-item p {
+                font-size: 16px; 
+                padding: 12px 10px;
+            }
         }
+
+        /* 響應式：手機 (小於 600px) */
+        @media (max-width: 600px) {
+            .featured-project-card {
+                margin-bottom: 30px;
+            }
+            .project-details { 
+                padding: 20px; 
+            }
+        }
+
+        /* --- Lightbox 燈箱樣式 --- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox-content-wrapper {
+            position: relative;
+            max-width: 80%;
+            max-height: 80%;
+            text-align: center;
+        }
+
+        .lightbox-content {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            object-fit: contain;
+        }
+
+        #lightbox-caption {
+            margin-top: 15px;
+            color: var(--white);
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .lightbox-close:hover {
+            color: var(--secondary-gold);
+        }
+
+        .lightbox-prev, .lightbox-next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            border-radius: 50%;
+            transition: all 0.3s;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-prev:hover, .lightbox-next:hover {
+            background: var(--secondary-gold);
+        }
+
+        .lightbox-prev { left: 5%; }
+        .lightbox-next { right: 5%; }
+
+        @media (max-width: 900px) {
+            .lightbox-prev { left: 2%; }
+            .lightbox-next { right: 2%; }
+            .lightbox-content-wrapper { max-width: 95%; }
+        }
+
     </style>
 </head>
 <body>
@@ -349,7 +471,7 @@
             <h3 class="section-title-light">聯絡資訊</h3>
             <div class="contact-item"><i class="fas fa-envelope"></i> lily223spirit@gmail.com</div>
             <div class="contact-item"><i class="fas fa-phone"></i> 0928-320-230</div>
-            <div class="contact-item"><i class="fas fa-map-marker-alt"></i> 高雄市</div>
+           <div class="contact-item"><i class="fas fa-globe"></i>履歷 https://l320230.github.io/lily/</div>
         </div>
 
         <div class="education">
@@ -366,22 +488,23 @@
                 <li>Photoshop</li>
                 <li>Illustrator</li>
                 <li>Adobe XD</li>
-                <li>Figma</li>
-                <li>UI/UX 設計</li>
+                <li>UI/UX 介面設計</li>
+                <li>動態視覺互動</li>
                 <li>Prototype</li>
+                <li>Bootstrap</li>
                 <li>HTML / CSS / JS</li>
+                <li>AI 輔助程式開發</li>
+                <li>系統分析 (Use Case / ERD)</li>
                 <li>ASP.NET Core MVC (C#)</li>
                 <li>SQL Server</li>
                 <li>原生Android APP</li>
-                <li>專案管理</li>
-                <li>跨部門與廠商協調</li>
+                <li>跨部門協調與專案管理</li>
             </ul>
         </div>
 
         <div class="cert-section">
             <h3 class="section-title-light">專業訓練</h3>
             <div class="cert-item">
-                
                 <div>
                     <strong>ISO 27001</strong><br>
                     主導稽核員國際認證培訓課程
@@ -389,7 +512,6 @@
             </div>
                 
         <div class="cert-item">
-                
                 <div>
                     <br>智慧行動商務系統開發職訓</div>
             </div></div>
@@ -400,13 +522,16 @@
         <section class="summary-section">
             <h2 class="section-title-dark">關於我 | ABOUT ME</h2>
            <p class="summary">
-            Hi，my name is Lily. 一位深耕於 <span class="highlight-gold">視覺傳達設計、UI/UX設計</span> 領域的實踐者，也具備專案管理經驗。我擅長運用洞察力將複雜的使用者需求轉化為直觀、愉悅的數位體驗。我深信，好的設計不僅是美學的呈現，更是問題的解決。運用過往經驗&學習，我能更有效地與開發團隊協作，縮短溝通成本，確保設計方案的完美落地。在專案管理方面，我善於在跨部門間搭建橋樑，優化工作流程，提升執行效率。我致力於透過對客戶需求瞭解與使用者測試，持續迭代產品，創造兼具商業價值與優良使用者體驗的數位方案。
+Hi , my name is Lily. 是一位深耕於 <span class="highlight-gold">視覺傳達設計與 UI/UX 設計</span> 領域的實踐者，同時具備專案管理與AI 輔助程式開發經驗。我深信好的設計不僅是美學呈現，更是解決問題的關鍵。<br><br>
 
+近期，我積極學習 AI 技術賦能工作流程，具備獨立運用 AI 輔助全端系統開發的能力。從前期的「需求分析」與「系統設計（包含 Use Case 使用案例圖、ERD 實體關聯圖規劃）」，到中期的「UI/UX 現代化介面與動態設計」，再到後期的「運用 AI 撰寫前端語言、C# MVC 後端邏輯與 SQL Server 資料庫建置」，我能一人貫穿產品的完整生命週期。也能有效地與開發團隊協作，縮短溝通成本，確保設計方案的完美落地。<br><br>
+
+在專案管理方面，致力於優化工作流程，提升執行效率，並透過對客戶需求瞭解與使用者測試，持續迭代產品，創造兼具商業價值與優良使用者體驗的數位產品。
             </p>
         </section>
 
         <section class="large-projects-section">
-            <h2 class="section-title-dark">指標性專案參與經驗 | KEY PROJECTS</h2>
+            <h2 class="section-title-dark">參與指標性專案經驗 | KEY PROJECTS</h2>
             
             <div class="project-category">
                 <h3>🏛️ 國家級博物館與數位典藏系統</h3>
@@ -414,11 +539,12 @@
                     <li><strong>國立故宮博物院：</strong>數位典藏知識庫整合型系統 <span class="project-tag">系統整合</span></li>
                     <li><strong>國立故宮博物院：</strong>4G行動博物館計畫 - Open Data 平台優化</li>
                     <li><strong>國立故宮博物院：</strong>檢索系統社群標籤及詞彙索引典機制建置案</li>
+                    <li><strong>新北市朱銘美術館：</strong>典藏管理資訊系統</li>
+                    <li><strong>國立自然科學博物館：</strong>自然與人文知識庫整合建置專案、數位博物館虛實整合加值服務推廣行銷計畫</li>
                     <li><strong>國立科學工藝博物館：</strong>文物典藏管理系統</li>
                     <li><strong>國立海洋生物博物館：</strong>「台灣淡水魚的來龍去脈」特展網站、飛魚專題報導網頁設計</li>
-                    <li><strong>國立自然科學博物館：</strong>自然與人文知識庫整合建置專案</li>
                     <li><strong>國立海洋科技博物館：</strong>蒐藏品管理系統</li>
-                    <li><strong>新北市朱銘美術館：</strong>典藏管理資訊系統</li>
+
                 </ul>
             </div>
 
@@ -441,14 +567,14 @@
                     <i class="fas fa-trophy"></i>
                     <div class="award-details">
                         <h4>智慧城市創新應用獎 & 百大創新產品獎</h4>
-                        <p>作品：臺北市衛生局 健康便利站設計 (2014)</p>
+                        <p>作品：臺北市衛生局 | 健康便利站設計 (2014)</p>
                     </div>
                 </li>
                 <li class="award-item">
                     <i class="fas fa-medal"></i>
                     <div class="award-details">
                         <h4>衛生福利部國民健康署 - 優質獎</h4>
-                        <p>作品：臺北市政府衛生局_健康雲端資訊入口網 (2013)</p>
+                        <p>作品：臺北市政府衛生局 | 健康雲端資訊入口網 (2013)</p>
                     </div>
                 </li>
                 <li class="award-item">
@@ -469,7 +595,7 @@
                     <div class="timeline-title">視覺設計總監 | 專案經理</div>
                     <div class="timeline-company">資訊股份有限公司</div>
                     <div class="timeline-desc">
-                      負責專案網站全端視覺設計品質把關與專案管理，包含 RWD 響應式設計，並協助行銷活動之視覺素材產出。
+                      統籌大型專案的視覺風格與 UI/UX 體驗，嚴格把關全端設計品質。主導多項 RWD 響應式網站專案，並導入模組化設計流程以提升團隊產能。擔任專案經理角色期間，精準掌控時程與預算，致力於優化工作流程，提升執行效率，創造兼具商業價值與優良使用者體驗的數位產品。
                     </div>
                 </div>
                 <div class="timeline-item">
@@ -477,7 +603,7 @@
                     <div class="timeline-title">藝術總監</div>
                     <div class="timeline-company">慧智達科技股份有限公司</div>
                     <div class="timeline-desc">
-                      負責專案介面設計、使用者流程規劃與 Prototype 製作。與工程團隊密切合作，確保設計落地與產品可用性。
+                     帶領設計團隊執行從概念發想到最終落地的完整設計流程。專注於使用者介面（UI）與使用者體驗（UX）優化，產出高保真 Prototype 並制定設計規範。長期與工程團隊建立緊密且高效的協作模式，大幅降低開發初期的溝通成本，確保設計理念完美實踐於終端產品。
                     </div>
                 </div>
             </div>
@@ -488,11 +614,12 @@
             <div class="featured-project-card">
                 <div class="project-details">
                     <h3>TravelLedger 旅遊帳簿與預算管理系統</h3>
-                    <p class="project-roles">負責全專案UI/UX 設計、使用案例圖(Use Case)、實體關聯圖(ERD)規劃、運用AI全端程式開發</p>
-                    <p class="project-desc">「TravelLedger」是基於 ASP.NET Core MVC (C#) 框架開發，並採用 SQL Server 作為關聯式資料庫的旅遊帳簿與預算管理系統。本系統不僅提供完整的記帳 CRUD 功能，更整合了行程時間軸與實體圖片上傳至伺服器端的功能。系統內建複雜的分帳演算法與匯率轉換機制，涵蓋了從「行前預算編列」、「旅途中記帳與行程對照」到「行後財務結算」的完整旅遊生命週期。</p>
+                    <p class="project-roles">負責全專案UI/UX 設計、使用案例圖(Use Case)、實體關聯圖(ERD)規劃、運用AI開發全端程式</p>
+                    <p class="project-desc">「TravelLedger」是基於 ASP.NET Core MVC (C#) 框架開發，並採用 SQL Server 作為關聯式資料庫的旅遊帳簿與預算管理系統。本系統不僅提供完整的記帳 CRUD 功能，更整合了行程時間軸與實體圖片上傳至伺服器端的功能。系統內建複雜的分帳演算法與匯率轉換機制，涵蓋了從「行前預算編列」、「旅途中記帳與行程對照」到「行後財務結算」的完整旅遊生命週期。   (點擊下方縮圖可瀏覽大圖)</p>
                 </div>
             </div>
-<div class="portfolio-grid-container">
+            
+            <div class="portfolio-grid-container">
                 <div class="portfolio-grid-item">
                     <img src="img/2026a.jpg" alt="">
                     <p>TravelLedger 首頁</p>
@@ -573,12 +700,93 @@
                     <img src="img/project12.jpg" alt="">
                     <p>雲端資訊中心監控管理平台</p>
                 </div>
-
             </div>
         </section>
 
     </main>
 </div>
+
+<div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <button class="lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+    <div class="lightbox-content-wrapper">
+        <img id="lightbox-img" class="lightbox-content" src="" alt="大圖預覽">
+        <div id="lightbox-caption"></div>
+    </div>
+    <button class="lightbox-next"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const closeBtn = document.querySelector('.lightbox-close');
+        const prevBtn = document.querySelector('.lightbox-prev');
+        const nextBtn = document.querySelector('.lightbox-next');
+        
+        const items = document.querySelectorAll('.portfolio-grid-item');
+        let currentIdx = 0;
+        let imagesData = [];
+
+        items.forEach((item, index) => {
+            const img = item.querySelector('img');
+            const p = item.querySelector('p');
+            
+            imagesData.push({
+                src: img ? img.src : '',
+                caption: p ? p.textContent : ''
+            });
+
+            item.addEventListener('click', () => {
+                openLightbox(index);
+            });
+        });
+
+        function openLightbox(index) {
+            currentIdx = index;
+            updateLightbox();
+            lightbox.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+        }
+
+        function updateLightbox() {
+            lightboxImg.src = imagesData[currentIdx].src;
+            lightboxCaption.textContent = imagesData[currentIdx].caption;
+        }
+
+        function nextImage() {
+            currentIdx = (currentIdx + 1) % imagesData.length;
+            updateLightbox();
+        }
+
+        function prevImage() {
+            currentIdx = (currentIdx - 1 + imagesData.length) % imagesData.length;
+            updateLightbox();
+        }
+
+        closeBtn.addEventListener('click', closeLightbox);
+        nextBtn.addEventListener('click', nextImage);
+        prevBtn.addEventListener('click', prevImage);
+
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (lightbox.style.display === 'flex') {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') prevImage();
+            }
+        });
+    });
+</script>
 
 </body>
 </html>
