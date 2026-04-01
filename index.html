@@ -304,7 +304,7 @@
 
         .portfolio-grid-item img {
             width: 100%;
-            height: 200px; 
+        /* height: 200px; */
             object-fit: cover; 
             display: block;
             transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -450,7 +450,7 @@
             .lightbox-content-wrapper { max-width: 95%; }
         }
 
-        /* --- 新增：置頂按鈕樣式 --- */
+        /* --- 置頂按鈕樣式 --- */
         .back-to-top-btn {
             position: fixed;
             bottom: 30px;
@@ -467,7 +467,7 @@
             justify-content: center;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-            opacity: 0; /* 預設隱藏 */
+            opacity: 0;
             visibility: hidden;
             transform: translateY(20px);
             transition: all 0.3s ease;
@@ -496,6 +496,129 @@
             }
         }
 
+        /* --- Hero Mockup 扇形動態展開 --- */
+        .hero-mockup-section {
+            position: relative;
+            width: 100%;
+            min-height: 520px;
+            background-color: #0b1121;
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .hero-mockup-section .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.45;
+        }
+        
+        .hero-mockup-section .orb-1 {
+            width: 350px; height: 350px; 
+            background: #ff477e; top: -50px; left: -50px; 
+            animation: float1 10s ease-in-out infinite alternate;
+        }
+        
+        .hero-mockup-section .orb-2 {
+            width: 450px; height: 450px; 
+            background: #00d2ff; bottom: -50px; right: -50px; 
+            animation: float2 12s ease-in-out infinite alternate;
+        }
+        
+        .hero-mockup-section .orb-3 {
+            width: 250px; height: 250px; 
+            background: #ffd700; top: 25%; left: 35%; 
+            animation: float3 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes float1 { 100% { transform: translate(50px, 50px) scale(1.1); } }
+        @keyframes float2 { 100% { transform: translate(-50px, -30px) scale(1.05); } }
+        @keyframes float3 { 100% { transform: translate(30px, -40px) scale(1.2); } }
+
+        .phones-container {
+            position: relative;
+            width: 0; height: 0;
+            transform: scale(0.72);
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+
+        .hero-mockup-section .phone {
+            position: absolute;
+            top: -303px; left: -140px;
+            width: 280px; height: 606px;
+            background-color: #ffffff;
+            border-radius: 42px;
+            border: 8px solid #ffffff;
+            box-shadow: 
+                inset 0 0 0 2px #e2e8f0,
+                -15px 25px 35px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(0,0,0,0.15);
+            overflow: hidden;
+            transform: translate(var(--tx), var(--ty)) scale(var(--s)) rotate(var(--r));
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                        box-shadow 0.5s ease, z-index 0s;
+            cursor: pointer;
+        }
+
+        .hero-mockup-section .phone img {
+            width: 100%; height: 100%;
+            object-fit: cover; display: block;
+        }
+
+        .hero-mockup-section .phone:hover {
+            transform: translate(var(--tx), calc(var(--ty) - 60px)) scale(calc(var(--s) + 0.12)) rotate(0deg);
+            z-index: 10 !important;
+            box-shadow: 
+                inset 0 0 0 2px #e2e8f0,
+                0 40px 80px rgba(0,0,0,0.6),
+                0 0 30px rgba(255,255,255,0.1);
+        }
+
+        .hero-mockup-section .p-left-2 { --tx: -360px; --ty: 90px; --s: 0.75; --r: -24deg; z-index: 1; }
+        .hero-mockup-section .p-left-1 { --tx: -190px; --ty: 25px; --s: 0.85; --r: -12deg; z-index: 2; }
+        .hero-mockup-section .p-center { 
+            --tx: 0px; --ty: -10px; --s: 1; --r: 0deg; z-index: 3; 
+            box-shadow: inset 0 0 0 2px #e2e8f0, 0 30px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0,0,0,0.2);
+        }
+        .hero-mockup-section .p-right-1 { --tx: 190px; --ty: 25px; --s: 0.85; --r: 12deg; z-index: 2; }
+        .hero-mockup-section .p-right-2 { --tx: 360px; --ty: 90px; --s: 0.75; --r: 24deg; z-index: 1; }
+
+        .hero-mockup-section .reflection {
+            position: absolute; top: 0; left: -150%; width: 150%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.25) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg); z-index: 5; pointer-events: none;
+        }
+
+        @media (max-width: 1200px) { .phones-container { transform: scale(0.65); } }
+        @media (max-width: 900px) {
+            .phones-container { transform: scale(0.72); } 
+            .hero-mockup-section { min-height: 520px; border-radius: 0; }
+        }
+        @media (max-width: 768px) {
+            .phones-container { transform: scale(0.6); }
+            .hero-mockup-section { min-height: 450px; }
+        }
+        @media (max-width: 600px) {
+            .phones-container { transform: scale(0.48); }
+            .hero-mockup-section { min-height: 380px; }
+            .hero-mockup-section .phone:hover {
+                transform: translate(var(--tx), calc(var(--ty) - 30px)) scale(calc(var(--s) + 0.08)) rotate(0deg);
+            }
+        }
+        @media (max-width: 480px) {
+            .phones-container { transform: scale(0.38); }
+            .hero-mockup-section { min-height: 280px; }
+        }
+        @media (max-width: 380px) {
+            .phones-container { transform: scale(0.32); }
+            .hero-mockup-section { min-height: 240px; }
+        }
     </style>
 </head>
 <body>
@@ -545,6 +668,7 @@
                 <li>SQL Server</li>
                 <li>原生Android APP</li>
                 <li>跨部門協調與專案管理</li>
+                <li>Logo、名片、DM、海報、筆記本設計...</li>
             </ul>
         </div>
 
@@ -565,6 +689,37 @@
 
     <main class="main-content">
         
+        <!-- --- Hero Mockup 扇形動態展開區塊 --- -->
+        <section class="hero-mockup-section">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            
+            <div class="phones-container">
+                <!-- 更新 alt 屬性，當作燈箱的標題 -->
+                <div class="phone p-left-2">
+                    <div class="reflection"></div>
+                    <img src="img/iPhone_05.jpg" alt="TravelLedger 旅程設定">
+                </div>
+                <div class="phone p-left-1">
+                    <div class="reflection"></div>
+                    <img src="img/iPhone_04.jpg" alt="TravelLedger 行程規劃">
+                </div>
+                <div class="phone p-center">
+                    <div class="reflection"></div>
+                    <img src="img/iPhone_01.jpg" alt="TravelLedger 首頁總覽">
+                </div>
+                <div class="phone p-right-1">
+                    <div class="reflection"></div>
+                    <img src="img/iPhone_03.jpg" alt="TravelLedger 預算透視">
+                </div>
+                <div class="phone p-right-2">
+                    <div class="reflection"></div>
+                    <img src="img/iPhone_02.jpg" alt="TravelLedger 支出明細">
+                </div>
+            </div>
+        </section>
+
         <section class="summary-section">
             <h2 class="section-title-dark">關於我 | ABOUT ME</h2>
            <p class="summary">
@@ -768,7 +923,7 @@ Hi , my name is Lily. 是一位深耕於 <span class="highlight-gold">視覺傳�
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        // --- Lightbox 燈箱邏輯 ---
+        // --- 升級版 Lightbox 燈箱邏輯 (支援多組獨立圖庫) ---
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCaption = document.getElementById('lightbox-caption');
@@ -776,25 +931,43 @@ Hi , my name is Lily. 是一位深耕於 <span class="highlight-gold">視覺傳�
         const prevBtn = document.querySelector('.lightbox-prev');
         const nextBtn = document.querySelector('.lightbox-next');
         
-        const items = document.querySelectorAll('.portfolio-grid-item');
+        // 紀錄當前開啟的是哪一組圖庫與索引
+        let currentGallery = [];
         let currentIdx = 0;
-        let imagesData = [];
 
-        items.forEach((item, index) => {
+        // 【圖庫 A】處理精選作品集
+        const portfolioItems = document.querySelectorAll('.portfolio-grid-item');
+        let portfolioData = [];
+        portfolioItems.forEach((item, index) => {
             const img = item.querySelector('img');
             const p = item.querySelector('p');
-            
-            imagesData.push({
-                src: img ? img.src : '',
-                caption: p ? p.textContent : ''
-            });
-
-            item.addEventListener('click', () => {
-                openLightbox(index);
-            });
+            if (img) {
+                portfolioData.push({
+                    src: img.src,
+                    caption: p ? p.textContent : ''
+                });
+                item.addEventListener('click', () => openLightbox(portfolioData, index));
+            }
         });
 
-        function openLightbox(index) {
+        // 【圖庫 B】處理 5 支手機 Mockup
+        const phoneItems = document.querySelectorAll('.phones-container .phone');
+        let phoneData = [];
+        phoneItems.forEach((item, index) => {
+            const img = item.querySelector('img');
+            if (img) {
+                phoneData.push({
+                    src: img.src,
+                    // 利用我們剛剛設定在手機 img 上的 alt 屬性當作說明標題
+                    caption: img.alt || 'App Mockup'
+                });
+                item.addEventListener('click', () => openLightbox(phoneData, index));
+            }
+        });
+
+        // 開啟燈箱共用邏輯
+        function openLightbox(gallery, index) {
+            currentGallery = gallery;
             currentIdx = index;
             updateLightbox();
             lightbox.style.display = 'flex';
@@ -805,30 +978,38 @@ Hi , my name is Lily. 是一位深耕於 <span class="highlight-gold">視覺傳�
         }
 
         function updateLightbox() {
-            lightboxImg.src = imagesData[currentIdx].src;
-            lightboxCaption.textContent = imagesData[currentIdx].caption;
+            if (currentGallery.length > 0) {
+                lightboxImg.src = currentGallery[currentIdx].src;
+                lightboxCaption.textContent = currentGallery[currentIdx].caption;
+            }
         }
 
         function nextImage() {
-            currentIdx = (currentIdx + 1) % imagesData.length;
-            updateLightbox();
+            if (currentGallery.length > 0) {
+                currentIdx = (currentIdx + 1) % currentGallery.length;
+                updateLightbox();
+            }
         }
 
         function prevImage() {
-            currentIdx = (currentIdx - 1 + imagesData.length) % imagesData.length;
-            updateLightbox();
+            if (currentGallery.length > 0) {
+                currentIdx = (currentIdx - 1 + currentGallery.length) % currentGallery.length;
+                updateLightbox();
+            }
         }
 
         closeBtn.addEventListener('click', closeLightbox);
         nextBtn.addEventListener('click', nextImage);
         prevBtn.addEventListener('click', prevImage);
 
+        // 點擊背景關閉燈箱
         lightbox.addEventListener('click', function(e) {
             if (e.target === lightbox) {
                 closeLightbox();
             }
         });
 
+        // 鍵盤左右鍵切換與 Esc 關閉
         document.addEventListener('keydown', function(e) {
             if (lightbox.style.display === 'flex') {
                 if (e.key === 'Escape') closeLightbox();
@@ -837,7 +1018,7 @@ Hi , my name is Lily. 是一位深耕於 <span class="highlight-gold">視覺傳�
             }
         });
 
-        // --- 新增：置頂按鈕邏輯 ---
+        // --- 置頂按鈕邏輯 ---
         const backToTopBtn = document.getElementById('back-to-top');
 
         // 監聽滾動事件，當往下捲動超過 300px 時顯示按鈕
