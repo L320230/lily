@@ -38,13 +38,13 @@
             color: var(--text-body);
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
-            overflow-x: hidden;
         }
 
         .aurora-bg {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             z-index: -2; overflow: hidden; background: #F8FAFC;
         }
+        
         .blob {
             position: absolute; filter: blur(90px); opacity: 0.5; border-radius: 50%;
             animation: float 20s infinite alternate ease-in-out; z-index: -1;
@@ -235,7 +235,6 @@
         .portfolio-item { border-radius: var(--radius-sm); overflow: hidden; border: 1px solid rgba(0,0,0,0.05); background: #FFF; cursor: pointer; position: relative; transition: all 0.4s ease; box-shadow: 0 4px 6px rgba(0,0,0,0.02); display: flex; flex-direction: column; }
         .portfolio-item:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: rgba(79, 70, 229, 0.3); }
         
-        /* 桌機版預設圖片區塊高度 */
         .portfolio-item .img-wrapper { overflow: hidden; width: 100%; height: 230px; flex-shrink: 0; }
         .portfolio-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         
@@ -253,7 +252,10 @@
         .lightbox-content { max-width: 100%; max-height: 80vh; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); object-fit: contain; }
         #lightbox-caption { margin-top: 20px; color: #FFF; font-size: 18px; font-weight: 600; letter-spacing: 1px; }
 
-        .lightbox-btn { position: absolute; background: rgba(255,255,255,0.1); color: white; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(4px); }
+        .lightbox-btn { 
+            position: absolute; z-index: 100; background: rgba(0, 0, 0, 0.5); 
+            color: white; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(4px); 
+        }
         .lightbox-close { top: 30px; right: 40px; width: 48px; height: 48px; border-radius: 50%; font-size: 24px; }
         .lightbox-prev, .lightbox-next { top: 50%; transform: translateY(-50%); width: 56px; height: 56px; border-radius: 50%; font-size: 24px; }
         .lightbox-prev { left: 40px; }
@@ -281,6 +283,7 @@
             .main-layout { grid-template-columns: 1fr; }
             .sidebar { position: relative; top: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
             .profile-card { grid-column: span 2; }
+
             .portfolio-item .img-wrapper { height: auto; aspect-ratio: 16 / 9; width: 100%; flex-shrink: 0; }
             .portfolio-item img { height: 100%; width: 100%; object-fit: cover; }
         }
@@ -462,7 +465,7 @@
             <div class="project-group">
                 <h3>🏛️ 國家級博物館與數位典藏系統</h3>
                 <ul class="modern-list">
-                    <li><strong>國立故宮博物院：</strong>數位典藏知識庫整合型系統 <span class="tag-mini">系統整合</span></li>
+                    <li><strong>國立故宮博物院：</strong>數位典藏知識庫整合型系統 
                     <li><strong>國立故宮博物院：</strong>4G行動博物館計畫 - Open Data 平台優化</li>
                     <li><strong>國立故宮博物院：</strong>檢索系統社群標籤及詞彙索引典機制建置案</li>
                     <li><strong>新北市朱銘美術館：</strong>典藏管理資訊系統</li>
@@ -477,7 +480,7 @@
                 <h3>🏥 政府與公共衛生資訊服務系統</h3>
                 <ul class="modern-list">
                     <li><strong>臺北市政府衛生局：</strong>健康雲.悠活臺北網站、健康便利站、行動社區服務</li>
-                    <li><strong>臺北市政府衛生局：</strong>食藥粧網路地圖計畫建置 <span class="tag-mini">地圖圖資整合</span></li>
+                    <li><strong>臺北市政府衛生局：</strong>食藥粧網路地圖計畫建置
                     <li><strong>臺北市政府衛生局：</strong>長期藥事服務系統、衛生資訊系統擴充案</li>
                     <li><strong>桃園市政府衛生局：</strong>市民卡健康服務網管理系統</li>
                     <li><strong>中華民國總統府：</strong>全球資訊網改版建置案</li>
@@ -618,7 +621,7 @@
 
         function closeLightbox() {
             lightbox.style.display = 'none';
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = ''; 
         }
 
         function updateLightbox() {
@@ -660,29 +663,24 @@
             }
         });
 
-   
         const backToTopBtn = document.getElementById('back-to-top');
         const sections = document.querySelectorAll('main.content-area .card[id]');
         const navLinks = document.querySelectorAll('.sticky-nav a');
 
         function updateActiveNav() {
             let current = '';
-
             const scrollPosition = window.scrollY + 150; 
 
             sections.forEach(section => {
-
                 const sectionTop = section.getBoundingClientRect().top + window.scrollY;
                 if (scrollPosition >= sectionTop) {
                     current = section.getAttribute('id');
                 }
             });
 
- 
             if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
                 current = sections[sections.length - 1].getAttribute('id');
             }
-
 
             navLinks.forEach(link => {
                 link.classList.remove('active');
@@ -693,16 +691,13 @@
         }
 
         window.addEventListener('scroll', () => {
-    
             if (window.scrollY > 400) {
                 backToTopBtn.classList.add('show');
             } else {
                 backToTopBtn.classList.remove('show');
             }
-       
             updateActiveNav();
         });
-
 
         updateActiveNav();
 
